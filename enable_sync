@@ -1,0 +1,19 @@
+#!/bin/bash
+
+TARGET_DIR="/home/reinir/Public/reinir/phoneSync"
+
+SRC="$1"
+
+if [ -z "$SRC" ]; then
+    echo "usage: $0 <path>" >&2
+    exit 1
+fi
+
+# Resolve to absolute path (important for stability)
+SRC_ABS="$(cd "$(dirname "$SRC")" && pwd)/$(basename "$SRC")"
+
+NAME="$(basename "$SRC")"
+DST="$TARGET_DIR/$NAME"
+
+ln -s "$SRC_ABS" "$DST"
+

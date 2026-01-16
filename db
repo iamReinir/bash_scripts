@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Usage: ./send_sql.sh your_file.sql
+
+# Check for argument
+# if [ -z "$1" ]; then
+#     echo "Usage: $0 your_file.sql"
+#     exit 1
+# fi
+
+# SQL_FILE="$1"
+# Database connection details
+DB_NAME="tts_kimphat"
+DB_USER="ts_pottery_admin"
+DB_HOST="202.143.111.173"  # Change if needed
+DB_PORT="5432"       # Default PostgreSQL port
+
+# Run the SQL file
+PGPASSWORD=cf6vy7S3Or31GwuLFcdD psql -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" -d "$DB_NAME" --csv
+

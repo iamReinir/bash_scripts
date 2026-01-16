@@ -1,0 +1,3 @@
+#!/bin/bash
+cd /home/reinir/path/minecraft_server
+java -Xmx8192M -Xms1024M -jar ./fabric-server-mc.1.21.4.jar nogui

@@ -1,0 +1,6 @@
+#!/bin/bash
+# Toggle fcitx5 input method between first two items
+
+dbus-send --type=method_call --dest=org.fcitx.Fcitx5 \
+    /controller \
+    org.fcitx.Fcitx.Controller1.Toggle

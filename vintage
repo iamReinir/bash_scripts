@@ -1,0 +1,3 @@
+#!/bin/bash
+mesa_glthread=true prime-run /home/reinir/.local/share/vintagestory/Vintagestory
+

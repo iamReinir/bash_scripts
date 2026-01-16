@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Check if an application is specified
+if [ -z "$1" ]; then
+    echo "Usage: $0 <application> [arguments]"
+    exit 1
+fi
+
+# Define the log file
+LOGFILE="${HOME}/gpu_app.log"
+
+# Set environment variables for NVIDIA PRIME Render Offloading
+export __NV_PRIME_RENDER_OFFLOAD=1
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+export __VK_LAYER_NV_optimus=1  # Enable Vulkan optimizations (optional)
+
+# Append a timestamp to the log file
+echo "Running $1 on $(date)" >> "$LOGFILE"
+
+# Run the application and redirect output and errors to the log file
+"$@" >> "$LOGFILE" 2>&1 &
+disown
+
+echo "Running $1 on NVIDIA GPU... Output is logged to $LOGFILE."

@@ -1,0 +1,3 @@
+#!/bin/bash
+transmission-daemon --auth --username reinir --password Trung123 --port 9091 --allowed "127.0.0.1"
+firefox "localhost:9091"

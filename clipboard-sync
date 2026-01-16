@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# BROKEN: wl-paste --watch creates infinite loop, hangs clipboard
+# Problem: wl-paste --watch triggers on clipboard change, then runs wl-paste again
+# This causes clipboard to hang or behave weirdly
+# 
+# To stop if running: pkill -f clipboard-sync && pkill -f "wl-paste --watch"
+#
+# Bidirectional clipboard sync between Wayland and ~/.ttyclip for VT access:
+# 1. Wayland → File: monitors Wayland clipboard, writes changes to ~/.ttyclip
+# 2. File → Wayland: monitors ~/.ttyclip modifications, copies to Wayland clipboard
+# 
+# Needs: inotify-tools (pacman -S inotify-tools)
+
+CLIPFILE="${HOME}/.ttyclip"
+
+# Monitor Wayland clipboard and sync to file
+# wl-paste --watch: runs command whenever clipboard content changes
+# sh -c 'wl-paste > "$HOME/.ttyclip"': gets current clipboard and writes to file
+# &: runs in background
+wl-paste --watch sh -c 'wl-paste > "$HOME/.ttyclip"' &
+
+# Monitor file changes and sync to Wayland clipboard
+# inotifywait -m -e modify: continuously monitor file for modifications
+# --format '': suppress output format
+# while read: process each file change event
+# wl-copy < "$CLIPFILE": copy file content to Wayland clipboard
+inotifywait -m -e modify "$CLIPFILE" --format '' | while read; do
+    if [ -f "$CLIPFILE" ]; then
+        wl-copy < "$CLIPFILE"
+    fi
+done &
+
+# wait: keep script running until both background processes exit
+wait

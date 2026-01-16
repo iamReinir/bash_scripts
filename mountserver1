@@ -1,0 +1,2 @@
+#!/bin/bash
+sshfs -F /home/reinir/.ssh/config server1:./Public /home/reinir/mount/server1/

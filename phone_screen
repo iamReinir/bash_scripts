@@ -1,0 +1,2 @@
+#!/bin/bash
+krfb-virtualmonitor --name phone --password 12345678 --resolution 250x550 --port 5900

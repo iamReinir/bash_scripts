@@ -1,0 +1,3 @@
+#!/bin/bash
+umount /home/reinir/mount/server1/
+sshfs -F /home/reinir/.ssh/config server1:./ /home/reinir/mount/server1/

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+PORT=$1
+
+if [[ -z "$PORT" ]]; then
+  echo "Open ports:"
+  sudo firewall-cmd --list-ports
+  echo "===="
+  exit 0
+fi
+
+if ss -tuln | grep -q ":$PORT\b"; then
+  echo "Port $PORT is in use."
+  ss -tulpn | grep ":$PORT\b"
+else
+  echo "Port $PORT is free."
+fi

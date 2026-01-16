@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "Run Terra nil via Wine, GPU accelerated"
+
+prime-run wine ~/.wine/drive_c/Games/Terra\ Nil/Terra\ Nil.exe

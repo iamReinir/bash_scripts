@@ -1,0 +1,14 @@
+#!/bin/bash
+# First argument is the program name
+program="$1"
+
+# Check if a program name was given
+if [ -z "$program" ]; then
+    echo "Usage: $0 <program> [args...]"
+    exit 1
+fi
+
+# Shift to get the rest of the arguments (if any)
+shift
+
+prime-run cage -s -m last -- "$program" "$@" 

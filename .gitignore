@@ -1,0 +1,7 @@
+*.AppImage
+*.jar
+minecraft_server/
+Ventoy/
+.db.kate-swp
+background_log
+swapfile

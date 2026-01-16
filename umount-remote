@@ -1,0 +1,4 @@
+#!/bin/bash
+umount /home/reinir/mount/phone
+umount /home/reinir/mount/server1
+umount /home/reinir/mount/window

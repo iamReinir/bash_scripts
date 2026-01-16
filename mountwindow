@@ -1,0 +1,2 @@
+#!/bin/bash
+sshfs -F /home/reinir/.ssh/config winvm:./ /home/reinir/mount/window/

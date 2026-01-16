@@ -1,0 +1,18 @@
+#!/usr/bin/expect -f
+
+spawn q chat
+expect ">"
+
+send "hello"
+send "\r"             
+
+expect ">" 
+send "Im testing automation tool"
+send "\r"
+
+expect ">" 
+send "Im testing automation tool"
+send "\r"
+
+interact
+

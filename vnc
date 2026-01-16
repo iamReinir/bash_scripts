@@ -1,0 +1,2 @@
+#!/bin/bash
+krfb-virtualmonitor --name reinir --password Trung123 --resolution 1920x1080 --port 5001

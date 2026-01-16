@@ -1,0 +1,10 @@
+#!/bin/bash
+echo "Auto update webportal for AIScannerStore"
+
+rsync -av --delete ~/repos/AIScannerStore_webManager/build/ ~/repos/AIScannerStore/web_portal/
+cd ~/repos/AIScannerStore
+git add .
+git commit -m "auto update"
+git push
+
+echo "Done"

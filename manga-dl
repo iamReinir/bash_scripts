@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Check if an application is specified
+if [ -z "$1" ]; then
+    echo "Usage: $0 manga URL"
+    exit 1
+fi
+
+kotatsu-dl --format=cbz --jobs=4 --throttle --chapters=all -v $@

@@ -1,0 +1,18 @@
+#!/bin/bash
+# STT to Terminal Wrapper
+# Usage: stt-wrapper <stt_command> [args...]
+
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <stt_command> [args...]"
+    echo "Example: $0 whisper --model base"
+    exit 1
+fi
+cmd="$1"
+shift
+# Run STT command and pipe output to terminal
+"cmd" | stdbuf -oL cat | while IFS= read -r line; do
+    if [ -n "$line" ]; then
+        ydotool type "$line"
+        ydotool key 28:1 28:0  # Enter
+    fi
+done

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Check if an application is specified
+if [ -z "$1" ]; then
+    echo "Usage: $0 URL"
+    exit 1
+fi
+
+yt-dlp -x --no-playlist --default-search "ytsearch" --audio-format mp3 -f bestaudio $@
