@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ -n "$1" ]; then
+    echo "Processing single $1..."
+    tesseract "$1" stdout --oem 1 -l vie > "${1%.*}.txt"
+else
+    for img in *.png *.jpg *.jpeg; do
+        [ -e "$img" ] || continue
+        echo "Processing $img..."
+        tesseract "$img" stdout --oem 1 -l vie > "${img%.*}.txt"
+    done
+fi
+

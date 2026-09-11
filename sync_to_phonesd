@@ -1,0 +1,1 @@
+rclone sync ~/Reinir phone_sd: -P --exclude "Android/**"

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define variables
-SWAP_DIR="$HOME/path"
+SWAP_DIR="$HOME/"
 SWAP_FILE="$SWAP_DIR/swapfile"
 SWAP_SIZE="8G"
 

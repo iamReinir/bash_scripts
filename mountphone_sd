@@ -1,0 +1,1 @@
+rclone mount phone_sd: /mnt/phone_sd --vfs-cache-mode full
