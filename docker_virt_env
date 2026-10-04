@@ -1,0 +1,3 @@
+#!/bin/bash
+# docker run -it --name virt-env archlinux:latest /bin/bash
+docker start -ai virt-env

@@ -1,0 +1,1 @@
+awk -v RS="" '{gsub("\n", " "); print}'

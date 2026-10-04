@@ -16,14 +16,14 @@ fallocate -l $SWAP_SIZE "$SWAP_FILE" || dd if=/dev/zero of="$SWAP_FILE" bs=1M co
 chmod 600 "$SWAP_FILE"
 
 # Format the file as swap
-mkswap "$SWAP_FILE"
+sudo mkswap "$SWAP_FILE"
 
 # Enable the swap
 sudo swapon "$SWAP_FILE"
 
 # Verify swap is active
 echo "Swap status:"
-swapon --show
+sudo swapon --show
 
 # Add entry to /etc/fstab if not already present
 FSTAB_ENTRY="$SWAP_FILE none swap defaults 0 0"

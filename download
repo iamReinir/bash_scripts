@@ -6,4 +6,4 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-yt-dlp -x --no-playlist --default-search "ytsearch" --audio-format mp3 -f bestaudio $@
+yt-dlp -x --no-playlist --default-search "ytsearch" --audio-format mp3 -f bestaudio -o '%(title)s.%(ext)s' --add-metadata --embed-metadata --embed-thumbnail $@

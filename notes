@@ -2,7 +2,7 @@
 
 if [ -t 0 ] && [ $# -eq 0 ]; then
     # No input piped, no arguments passed -> Run default query
-    cat default_query.sql | sqlite3 ~/notes.sqlite 
+    cat ~/path/default_query.sql | sqlite3 ~/notes.sqlite -column
 else
     # Arguments or piped stdin exist -> Pass through normally
     sqlite3 ~/notes.sqlite "$@"

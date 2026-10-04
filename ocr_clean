@@ -1,0 +1,17 @@
+#!/usr/bin/python
+
+import sys
+
+# Read everything from stdin until EOF
+content = sys.stdin.read()
+print("READ")
+
+# Split by double newlines to isolate paragraphs
+paragraphs = content.split("\n\n")
+
+# Replace single newlines within paragraphs with spaces, then rejoin with single newlines
+cleaned_text = "\n".join(
+    p.replace("\n", " ").strip() for p in paragraphs if p.strip()
+)
+print(cleaned_text)
+sys.stdout.write(cleaned_text + "\n")

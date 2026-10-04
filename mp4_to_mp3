@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Exit if no argument is provided
+if [ -z "$1" ]; then
+    echo "Usage: $0 <input-file>"
+    exit 1
+fi
+
+# Check if the input file actually exists
+if [ ! -f "$1" ]; then
+    echo "Error: File '$1' not found."
+    exit 1
+fi
+
+# Strip the original extension and attach .mp3
+OUTPUT="${1%.*}.mp3"
+
+# Convert using FFmpeg
+ffmpeg -i "$1" -vn -q:a 2 "$OUTPUT"
