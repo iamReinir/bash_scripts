@@ -1,0 +1,55 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+A simple calculator that evaluates Python expressions piped to it.
+
+Usage:
+  echo "1 + 2" | ./calc
+  echo "2 ** 3" | ./calc
+  python -c "print(10 % 3)" | ./calc
+"""
+
+import subprocess
+import sys
+
+
+def evaluate_python_code(code: str) -> str:
+    """Evaluate Python code safely and return the result."""
+    # Wrap the code to ensure it prints its result
+    wrapped_code = "print(" + code + ")"
+    try:
+        # Execute the wrapped code in a subprocess
+        result = subprocess.run(
+            [sys.executable, "-c", wrapped_code],
+            capture_output=True,
+            text=True,
+            timeout=30
+        )
+        
+        if result.returncode == 0:
+            # Strip whitespace from the output
+            return result.stdout.strip()
+        else:
+            # Return error message
+            return f"Error: {result.stderr.strip()}"
+    except subprocess.TimeoutExpired:
+        return "Error: Command timed out"
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+
+def main():
+    if len(sys.argv) > 0:
+        # Read from stdin
+        code = sys.stdin.read()
+        if code.strip():
+            result = evaluate_python_code(code)
+            print(result)
+        else:
+            print("(none)")
+    else:
+        print("(none)")
+
+
+if __name__ == "__main__":
+    main()

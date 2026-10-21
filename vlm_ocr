@@ -1,0 +1,8 @@
+#!/bin/bash
+
+while [ -n "$1" ]; do
+    file=$(realpath "$1")
+    filename=$(basename "$file")
+    ollama run melashri/surya-ocr-2:q4_k_m "OCR the vietnamese in this doc: $file" > "${filename}.html"
+    shift
+done
